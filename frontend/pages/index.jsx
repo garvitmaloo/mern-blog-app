@@ -1,3 +1,4 @@
+import CardsGrid from "@project/components/CardsGrid/CardsGrid";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
@@ -18,11 +19,13 @@ export default function Home() {
                 accusantium quod aspernatur magni.
               </p>
               <button className="CTABtn align-self-start">
-                Read latest blogs <i class="fa-solid fa-arrow-right-long"></i>
+                Read latest blogs
+                <i className="fa-solid fa-arrow-right-long"></i>
               </button>
             </div>
             <div className="col-lg-6">
               <Image
+                priority
                 className={styles.heroImg}
                 src="/tech.png"
                 alt="A technology illustration"
@@ -31,6 +34,12 @@ export default function Home() {
               />
             </div>
           </div>
+        </section>
+
+        <section className="container latest section" id="latest">
+          <h1 className="section-heading">Latest Blogs</h1>
+
+          <CardsGrid />
         </section>
       </main>
     </>

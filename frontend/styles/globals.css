@@ -3,6 +3,14 @@
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  text-decoration: none !important;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited {
+  color: inherit;
 }
 
 :root {
@@ -50,6 +58,34 @@ section {
   transition: var(--fast-transition);
 }
 
+.CTABtn i {
+  margin-left: 0.5rem;
+}
+
 .CTABtn:hover {
   border: 2px solid var(--black-1);
+}
+
+.section-heading {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 1.5em;
+}
+
+.section-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 4px;
+  width: 50px;
+  background-color: var(--color-5);
+  transition: var(--fast-transition);
+}
+
+.section-heading:hover.section-heading::before {
+  width: 100%;
 }

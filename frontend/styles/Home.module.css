@@ -28,7 +28,3 @@
 .heroCTA:hover {
   border: 2px solid var(--black-1);
 }
-
-.heroCTA i {
-  margin-left: 0.5rem;
-}

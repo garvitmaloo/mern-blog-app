@@ -20,7 +20,7 @@
   --black-6: #f8f9fa;
 
   --slow-transition: all 400ms ease-in-out;
-  --fast-transition: all 250ms ease-in-out;
+  --fast-transition: all 300ms ease-in-out;
 }
 
 body {
@@ -36,4 +36,20 @@ h4,
 h5,
 h6 {
   font-family: "Noto Sans", sans-serif;
+}
+
+section {
+  padding: 3em 0;
+}
+
+.CTABtn {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-2);
+  transition: var(--fast-transition);
+}
+
+.CTABtn:hover {
+  border: 2px solid var(--black-1);
 }

@@ -1,5 +1,6 @@
 import CardsGrid from "@project/components/CardsGrid/CardsGrid";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -46,6 +47,64 @@ export default function Home() {
           <h1 className="section-heading">Most Popular Blogs</h1>
 
           <CardsGrid />
+        </section>
+
+        <section className="container category section" id="category">
+          <h1 className="section-heading">Browse By Category</h1>
+
+          <div className="row">
+            <div className="col-lg-6">
+              <img src="/blogs.jpg" alt="Blog" height={480} width={600} />
+            </div>
+            <div className="col-lg-6">
+              <h4 className="text-center mb-4">Categories</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+                tempore saepe porro repellendus quia id veniam quod, totam rerum
+                nihil! Repudiandae laborum adipisci mollitia omnis quibusdam
+                reiciendis! Quae, iure accusamus!
+              </p>
+
+              <div className="categories my-3 py-3 d-flex flex-wrap gap-3 ">
+                <Link
+                  href="/category/web-development"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  Web Development
+                </Link>
+                <Link
+                  href="/category/web-design"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  Web and UI/UX Design
+                </Link>
+                <Link
+                  href="/category/news-and-trends"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  News and Trends
+                </Link>
+                <Link
+                  href="/category/freelancing"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  Freelancing
+                </Link>
+                <Link
+                  href="/category/jobs-and-opportunities"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  Jobs and Opportunities
+                </Link>
+                <Link
+                  href="/category/tips-and-tricks"
+                  className={`CTABtn ${styles.categoryBtn}`}
+                >
+                  Tips, tricks and How To
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </>

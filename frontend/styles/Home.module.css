@@ -32,3 +32,25 @@
 .categoryBtn {
   background-color: var(--color-4);
 }
+
+.form {
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.form input {
+  display: block;
+  flex: 1;
+  margin: 0.5em auto;
+  padding: 0.45em;
+  font-size: 16px;
+  border: 2px solid var(--black-3);
+  outline: none;
+  border-radius: 5px;
+  transition: var(--fast-transition);
+}
+
+.form input:focus {
+  background-color: var(--color-2);
+  border: 2px solid var(--black-1);
+}

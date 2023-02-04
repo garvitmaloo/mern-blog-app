@@ -106,6 +106,66 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className="newsletter container section" id="newsletter">
+          <h1 className="section-heading">Newsletter</h1>
+
+          <div className="row">
+            <div className="col-lg-5">
+              <h4
+                className="my-3"
+                style={{ letterSpacing: "0px", fontWeight: 700 }}
+              >
+                Subscribe to our newsletter and get notified about the new
+                posts.
+              </h4>
+              <p style={{ color: "#495057" }}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                minima repellendus aut hic porro aperiam, distinctio quibusdam
+                earum doloribus amet dicta id harum quas vel dolor! Nam iusto
+                nisi aspernatur.
+              </p>
+            </div>
+
+            <div className="col-lg-7 ps-5">
+              <form className={styles.form}>
+                <div className="mb-2 d-flex gap-3">
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Your First Name"
+                    required
+                    autoComplete="off"
+                  />
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Your Last Name"
+                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="d-flex">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Your Email"
+                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <button className="CTABtn my-3 d-block mx-auto">
+                  Subscribe <i className="fa-solid fa-arrow-right-long"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

@@ -41,6 +41,12 @@ export default function Home() {
 
           <CardsGrid />
         </section>
+
+        <section className="container popular section" id="popular">
+          <h1 className="section-heading">Most Popular Blogs</h1>
+
+          <CardsGrid />
+        </section>
       </main>
     </>
   );

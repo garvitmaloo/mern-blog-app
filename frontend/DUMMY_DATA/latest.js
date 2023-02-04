@@ -4,12 +4,12 @@ export const latestPosts = [
     postTitle: "JavaScript - A beginner's guide",
     postText:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae placeat",
-    postDate: `${new Date().getDate} ${new Date().getMonth + 1} ${
-      new Date().getFullYear
-    }`,
+    postDate: `26 January 2023`,
     postAuthor: "Gabru Jawaan",
     postImageURL:
       "https://moralis.io/wp-content/uploads/2021/07/Moralis-Blogpost-JavaScript-Explained-07272021-V12.png",
+    postReadTime: 15,
+    postCategory: "Web Development",
   },
   {
     postId: 2,

@@ -58,7 +58,7 @@ section {
   transition: var(--fast-transition);
 }
 
-.CTABtn i {
+.CTABtn svg {
   margin-left: 0.5rem;
 }
 

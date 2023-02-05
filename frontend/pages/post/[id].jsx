@@ -1,5 +1,9 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
+import CreateIcon from "@mui/icons-material/Create";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
+import SearchIcon from "@mui/icons-material/Search";
 
 import styles from "../../styles/PostDetails.module.css";
 import { latestPosts } from "../../DUMMY_DATA/latest";
@@ -20,20 +24,20 @@ export default function PostDetails() {
 
       <div className={` mb-5 ${styles.postData}`}>
         <span className={styles.data}>
-          <i className="fa-solid fa-pen-nib me-2"></i>
+          <CreateIcon />
           Written By - {latestPosts[0].postAuthor}
         </span>
         <span className={styles.data}>
-          <i className="fa-solid fa-calendar-days me-2"></i>
+          <CalendarMonthIcon />
           Published On - {latestPosts[0].postDate}
         </span>
 
         <span className={styles.data}>
-          <i className="fa-solid fa-hourglass-start me-2"></i>
+          <HourglassBottomIcon />
           Read Time - {latestPosts[0].postReadTime}
         </span>
         <span className={styles.data}>
-          <i className="fa-solid fa-magnifying-glass me-2"></i>
+          <SearchIcon />
           Category - {latestPosts[0].postCategory}
         </span>
       </div>

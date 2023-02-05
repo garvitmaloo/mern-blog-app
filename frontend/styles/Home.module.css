@@ -16,19 +16,6 @@
   background-color: var(--color-5);
 }
 
-.heroCTA {
-  align-self: flex-start;
-  border: 2px solid transparent;
-  border-radius: 5px;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-2);
-  transition: var(--fast-transition);
-}
-
-.heroCTA:hover {
-  border: 2px solid var(--black-1);
-}
-
 .categoryBtn {
   background-color: var(--color-4);
 }

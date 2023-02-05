@@ -1,6 +1,8 @@
 import CardsGrid from "@project/components/CardsGrid/CardsGrid";
 import Image from "next/image";
 import Link from "next/link";
+import EastIcon from "@mui/icons-material/East";
+
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
               </p>
               <button className="CTABtn align-self-start">
                 Read latest blogs
-                <i className="fa-solid fa-arrow-right-long"></i>
+                <EastIcon />
               </button>
             </div>
             <div className="col-lg-6">
@@ -160,7 +162,7 @@ export default function Home() {
                 </div>
 
                 <button className="CTABtn my-3 d-block mx-auto">
-                  Subscribe <i className="fa-solid fa-arrow-right-long"></i>
+                  Subscribe <EastIcon />
                 </button>
               </form>
             </div>

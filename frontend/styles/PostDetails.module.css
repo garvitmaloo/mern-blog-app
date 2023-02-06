@@ -28,3 +28,21 @@
   width: 75%;
   margin: 0 auto;
 }
+
+.postActions {
+  display: flex;
+  justify-content: center;
+}
+
+.postActions a {
+  display: block;
+  padding: 0.75em 1.5em;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  background-color: var(--color-4);
+  margin: 0 0.5em;
+}
+
+.postActions a svg {
+  margin-right: 0.25em;
+}

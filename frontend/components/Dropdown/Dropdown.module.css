@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  padding: 0.45em 1em;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  margin: 0 0.3em;
+  background-color: var(--color-2);
+  color: var(--black-1);
+  transition: var(--fast-transition);
+}
+
+.dropdown button:hover {
+  border: 2px solid var(--black-1);
+}
+
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  width: 12rem;
+  top: 43px;
+  left: 0;
+  z-index: 1000;
+  border: 1px solid var(--black-4);
+  border-radius: 5px;
+  padding: 0;
+}
+
+.dropdownMenu.show {
+  display: block;
+}
+
+.dropdownMenu li {
+  padding: 0.5em 1em;
+  background-color: var(--black-6);
+  border-bottom: 1px solid var(--black-4);
+}

@@ -1,0 +1,39 @@
+.navbar {
+  padding: 1em 3em;
+  padding-right: 4.5em;
+  box-shadow: 0 1px 3px -1px gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 24px;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+
+.menu {
+  display: flex;
+  gap: 0.75em;
+  align-items: center;
+}
+
+.navbarBtn {
+  padding: 0.45em 1em;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  margin: 0 0.3em;
+  background-color: var(--color-2);
+  color: var(--black-1);
+  transition: var(--fast-transition);
+}
+
+.navbarBtn:hover {
+  border: 2px solid var(--black-1);
+}
+
+.navbarBtn svg {
+  margin-right: 0.25em;
+  font-size: 20px;
+}

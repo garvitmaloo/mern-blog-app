@@ -1,4 +1,5 @@
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import Link from "next/link";
 
 import Dropdown from "../Dropdown/Dropdown";
 import styles from "./Navbar.module.css";
@@ -11,9 +12,10 @@ export default function Navbar() {
           <h1>Admin Panel</h1>
         </div>
         <div className={styles.menu}>
-          <button className={styles.navbarBtn}>
+          <Link href="/admin/post/new-post" className={styles.navbarBtn}>
             <AddCircleOutlineIcon /> New Post
-          </button>
+          </Link>
+
           <Dropdown />
         </div>
       </nav>

@@ -18,7 +18,7 @@ export default function Dropdown() {
           Profile <KeyboardArrowDownIcon />
         </button>
         <ul className={`${styles.dropdownMenu} ${showDropdown && styles.show}`}>
-          <Link href="#">
+          <Link href="/admin/change-password">
             <li>Change Password</li>
           </Link>
           <Link href="#">

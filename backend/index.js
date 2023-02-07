@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+const visitorHomePageRoutes = require("./routes/visitorHome");
 const postRoutes = require("./routes/post");
 
 dotenv.config();
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use("/api/", visitorHomePageRoutes);
 app.use("/api/post", postRoutes);
 
 mongoose

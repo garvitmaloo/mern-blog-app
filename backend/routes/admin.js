@@ -1,4 +1,7 @@
 const router = require("express").Router();
+const multer = require("multer");
+
+const upload = multer();
 
 const adminControllers = require("../controllers/adminControllers");
 
@@ -10,7 +13,11 @@ router.get("/home", adminControllers.adminHomePageController);
 
 router.get("/post/:id", adminControllers.adminPostDetails);
 
-router.post("/post/new-post", adminControllers.postNewBlog);
+router.post(
+  "/post/new-post",
+  upload.single("bannerImage"),
+  adminControllers.postNewBlog
+);
 
 router.patch("/post/:id", adminControllers.editBlog);
 

@@ -89,8 +89,14 @@ exports.editBlog = function (req, res) {
   res.status(202).json("Patch request for updating blog post");
 };
 
-exports.deleteBlog = function (req, res) {
-  res.status(204).json("Delete request for deleting a blog post");
+exports.deleteBlog = async function (req, res) {
+  try {
+    await Post.findByIdAndDelete(req.params.id);
+
+    res.status(410).json("Blog post deleted successfully");
+  } catch (err) {
+    res.status(404).json("Could not connect to the database at the moment");
+  }
 };
 
 exports.postChangePassword = function (req, res) {

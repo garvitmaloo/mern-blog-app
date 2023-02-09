@@ -1,8 +1,10 @@
 const path = require("path");
 const stream = require("stream");
 const { google } = require("googleapis");
+const bcrypt = require("bcryptjs");
 
 const Post = require("../model/Posts");
+const Admin = require("../model/Admin");
 
 const KEYFILEPATH = path.join(__dirname + "/../credentials.json");
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
@@ -37,12 +39,26 @@ const uploadFile = async function (fileObject) {
   }
 };
 
-exports.getAdminLogin = function (req, res) {
-  res.status(200).json("Get Route for admin login");
-};
+exports.postAdminLogin = async function (req, res) {
+  const { email, password } = req.body;
 
-exports.postAdminLogin = function (req, res) {
-  res.status(200).json("Post route for admin login");
+  try {
+    const reqUser = await Admin.findOne({ email });
+
+    if (!reqUser) {
+      return res.status(404).json("Incorrect admin email");
+    }
+
+    const passwordMatched = await bcrypt.compare(password, reqUser.password);
+
+    if (!passwordMatched) {
+      return res.status(403).json("Incorrect password");
+    }
+
+    res.status(200).json("Logged in as admin");
+  } catch (err) {
+    return res.status(404).json("Could not authenticate at the moment");
+  }
 };
 
 exports.postNewBlog = async function (req, res) {

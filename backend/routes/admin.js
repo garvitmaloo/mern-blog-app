@@ -6,8 +6,6 @@ const upload = multer();
 const adminControllers = require("../controllers/adminControllers");
 const postControllers = require("../controllers/postController");
 
-router.get("/", adminControllers.getAdminLogin);
-
 router.post("/", adminControllers.postAdminLogin);
 
 router.get("/home", postControllers.fetchAllPosts);

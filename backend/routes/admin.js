@@ -12,7 +12,7 @@ router.post("/", adminControllers.postAdminLogin);
 
 router.get("/home", postControllers.fetchAllPosts);
 
-router.get("/post/:id", adminControllers.adminPostDetails);
+router.get("/post/:id", postControllers.fetchPostDetails);
 
 router.post(
   "/post/new-post",

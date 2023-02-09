@@ -10,6 +10,12 @@ exports.fetchAllPosts = async function (req, res) {
   }
 };
 
-exports.fetchPostDetails = function (req, res) {
-  res.send("Post Details");
+exports.fetchPostDetails = async function (req, res) {
+  try {
+    const postDetails = await Posts.findById(req.params.id);
+
+    res.status(200).json(postDetails);
+  } catch (err) {
+    res.status(404).json("Something went wrong: Could not fetch post details");
+  }
 };

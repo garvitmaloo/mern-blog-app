@@ -45,14 +45,6 @@ exports.postAdminLogin = function (req, res) {
   res.status(200).json("Post route for admin login");
 };
 
-exports.adminHomePageController = function (req, res) {
-  res.status(200).json("Fetching all posts for admin.");
-};
-
-exports.adminPostDetails = function (req, res) {
-  res.status(200).json("Showing post details on admin side");
-};
-
 exports.postNewBlog = async function (req, res) {
   const { body, file } = req;
   const { postTitle, postBrief, postDetails, postCategory, readTime } = body;

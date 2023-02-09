@@ -4,12 +4,13 @@ const multer = require("multer");
 const upload = multer();
 
 const adminControllers = require("../controllers/adminControllers");
+const postControllers = require("../controllers/postController");
 
 router.get("/", adminControllers.getAdminLogin);
 
 router.post("/", adminControllers.postAdminLogin);
 
-router.get("/home", adminControllers.adminHomePageController);
+router.get("/home", postControllers.fetchAllPosts);
 
 router.get("/post/:id", adminControllers.adminPostDetails);
 

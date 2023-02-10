@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const multer = require("multer");
+const Posts = require("../model/Posts");
+
+const { getPaginatedResults } = require("../middleware/pagination");
 
 const upload = multer();
 
@@ -8,7 +11,7 @@ const postControllers = require("../controllers/postController");
 
 router.post("/", adminControllers.postAdminLogin);
 
-router.get("/home", postControllers.fetchAllPosts);
+router.get("/home", getPaginatedResults(Posts), postControllers.fetchAllPosts);
 
 router.get("/post/:id", postControllers.fetchPostDetails);
 

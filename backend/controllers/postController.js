@@ -3,8 +3,9 @@ const Posts = require("../model/Posts");
 exports.fetchAllPosts = async function (req, res) {
   try {
     const allPosts = await Posts.find();
+    const paginatedResults = res.paginatedResults;
 
-    res.status(200).json(allPosts);
+    res.status(200).json(paginatedResults);
   } catch (err) {
     res.status(404).json("Could not fetch posts.");
   }

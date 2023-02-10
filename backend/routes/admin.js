@@ -18,7 +18,11 @@ router.post(
   adminControllers.postNewBlog
 );
 
-router.patch("/post/:id", adminControllers.editBlog);
+router.patch(
+  "/post/:id",
+  upload.single("bannerImage"),
+  adminControllers.editBlog
+);
 
 router.delete("/post/:id", adminControllers.deleteBlog);
 

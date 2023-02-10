@@ -84,9 +84,27 @@ exports.postNewBlog = async function (req, res) {
   }
 };
 
-exports.editBlog = function (req, res) {
-  console.log(req.body);
-  res.status(202).json("Patch request for updating blog post");
+exports.editBlog = async function (req, res) {
+  const { body, file } = req;
+  const { postTitle, postBrief, postDetails, postCategory, readTime } = body;
+
+  try {
+    const reqPost = await Post.findById(req.params.id);
+    const imageUrl = await uploadFile(file);
+
+    reqPost.postTitle = postTitle;
+    reqPost.postBrief = postBrief;
+    reqPost.postDetails = postDetails;
+    reqPost.postCategory = postCategory;
+    reqPost.readTime = readTime;
+    reqPost.postImageURL = imageUrl;
+
+    await reqPost.save();
+
+    res.status(202).json("Post has been updated!");
+  } catch (err) {
+    return res.status(404).json("Something wen wrong. Could not update post.");
+  }
 };
 
 exports.deleteBlog = async function (req, res) {

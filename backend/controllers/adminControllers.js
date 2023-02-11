@@ -63,7 +63,8 @@ exports.postAdminLogin = async function (req, res) {
 
 exports.postNewBlog = async function (req, res) {
   const { body, file } = req;
-  const { postTitle, postBrief, postDetails, postCategory, readTime } = body;
+  const { postTitle, postBrief, postDetails, postCategory, readTime } =
+    body.formData;
 
   try {
     const imageURL = await uploadFile(file);

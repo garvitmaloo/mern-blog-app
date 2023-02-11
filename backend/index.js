@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const CORS = require("cors");
 
 const visitorHomePageRoutes = require("./routes/visitorHome");
 const postRoutes = require("./routes/post");
@@ -12,6 +13,13 @@ const adminRoutes = require("./routes/admin");
 dotenv.config();
 
 const app = express();
+
+app.use(
+  CORS({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  })
+);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));

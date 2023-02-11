@@ -1,10 +1,57 @@
+import axios from "axios";
+import { useRef, useState } from "react";
+
 import styles from "../../../styles/NewPostForm.module.css";
 
 export default function NewPost() {
+  const titleInputRef = useRef();
+  const briefInputRef = useRef();
+  const categoryInputRef = useRef();
+  const readTimeInputRef = useRef();
+  const detailsInputRef = useRef();
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const formSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    const formBody = {
+      postTitle: titleInputRef.current.value,
+      postBrief: briefInputRef.current.value,
+      postCategory: categoryInputRef.current.value,
+      readTime: readTimeInputRef.current.value,
+      postDetails: detailsInputRef.current.value,
+    };
+
+    const res = await axios.post(
+      "http://localhost:4000/api/admin/post/new-post",
+      {
+        bannerImage: selectedFile,
+        formData: formBody,
+      },
+      {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+  };
+
+  const fileSelectHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
   return (
     <div className="container">
       <h2 className="section-heading mt-5">Lets post something new</h2>
-      <form className={styles.newPostForm}>
+
+      <form
+        className={styles.newPostForm}
+        onSubmit={formSubmitHandler}
+        encType="multipart/form-data"
+        method="POST"
+        id="postForm"
+      >
         <label htmlFor="imageInput">Choose banner image:</label>
         <input
           className={styles.imageInput}
@@ -13,6 +60,7 @@ export default function NewPost() {
           id="imageInput"
           required
           autoComplete="off"
+          onChange={fileSelectHandler}
         />
 
         <input
@@ -22,6 +70,7 @@ export default function NewPost() {
           id="post-title"
           required
           autoComplete="off"
+          ref={titleInputRef}
         />
 
         <input
@@ -31,6 +80,7 @@ export default function NewPost() {
           id="post-brief"
           required
           autoComplete="off"
+          ref={briefInputRef}
         />
 
         <input
@@ -40,6 +90,7 @@ export default function NewPost() {
           id="post-read-time"
           required
           autoComplete="off"
+          ref={readTimeInputRef}
         />
 
         <textarea
@@ -48,6 +99,7 @@ export default function NewPost() {
           cols="30"
           rows="30"
           placeholder="Post Details"
+          ref={detailsInputRef}
           required
         ></textarea>
 
@@ -55,6 +107,7 @@ export default function NewPost() {
           className={styles.select}
           name="postCategory"
           id="post-category"
+          ref={categoryInputRef}
         >
           <option disabled selected>
             Select a category

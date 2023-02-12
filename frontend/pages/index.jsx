@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import EastIcon from "@mui/icons-material/East";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import CardsGrid from "@project/components/CardsGrid/CardsGrid";
@@ -10,6 +10,10 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [latestPosts, setLatestPosts] = useState([]);
   const [popularPosts, setPopularPosts] = useState([]);
+
+  const firstNameInputRef = useRef();
+  const lastNameInputRef = useRef();
+  const emailInputRef = useRef();
 
   useEffect(() => {
     const fetchHomePagePosts = async () => {
@@ -21,6 +25,20 @@ export default function Home() {
 
     fetchHomePagePosts();
   }, []);
+
+  const newsletterFormSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    const firstName = firstNameInputRef.current.value;
+    const lastName = lastNameInputRef.current.value;
+    const email = emailInputRef.current.value;
+
+    const { data } = await axios.post(
+      "http://localhost:4000/api/newsletter",
+      { firstName, lastName, email },
+      { headers: { "Content-Type": "application/json" } }
+    );
+  };
 
   return (
     <>
@@ -146,7 +164,10 @@ export default function Home() {
             </div>
 
             <div className="col-lg-7 ps-5">
-              <form className={styles.form}>
+              <form
+                className={styles.form}
+                onSubmit={newsletterFormSubmitHandler}
+              >
                 <div className="mb-2 d-flex gap-3">
                   <input
                     type="text"
@@ -155,6 +176,7 @@ export default function Home() {
                     placeholder="Your First Name"
                     required
                     autoComplete="off"
+                    ref={firstNameInputRef}
                   />
                   <input
                     type="text"
@@ -163,6 +185,7 @@ export default function Home() {
                     placeholder="Your Last Name"
                     required
                     autoComplete="off"
+                    ref={lastNameInputRef}
                   />
                 </div>
 
@@ -174,6 +197,7 @@ export default function Home() {
                     placeholder="Your Email"
                     required
                     autoComplete="off"
+                    ref={emailInputRef}
                   />
                 </div>
 

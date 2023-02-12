@@ -15,5 +15,5 @@ exports.subscribeToNewsletter = async function (req, res) {
 
   newUser.save().catch((err) => console.log(err));
 
-  return res.status(201).send("You have been subscribed.");
+  return res.status(201).json("You have been subscribed.");
 };

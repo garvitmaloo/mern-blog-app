@@ -1,11 +1,27 @@
-import CardsGrid from "@project/components/CardsGrid/CardsGrid";
 import Image from "next/image";
 import Link from "next/link";
 import EastIcon from "@mui/icons-material/East";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
+import CardsGrid from "@project/components/CardsGrid/CardsGrid";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [latestPosts, setLatestPosts] = useState([]);
+  const [popularPosts, setPopularPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchHomePagePosts = async () => {
+      const { data } = await axios.get("http://localhost:4000/api/");
+
+      setLatestPosts(data.latestPosts);
+      setPopularPosts(data.popularPosts);
+    };
+
+    fetchHomePagePosts();
+  }, []);
+
   return (
     <>
       <main>
@@ -42,13 +58,13 @@ export default function Home() {
         <section className="container latest section" id="latest">
           <h1 className="section-heading">Latest Blogs</h1>
 
-          <CardsGrid />
+          <CardsGrid posts={latestPosts} />
         </section>
 
         <section className="container popular section" id="popular">
           <h1 className="section-heading">Most Popular Blogs</h1>
 
-          <CardsGrid />
+          <CardsGrid posts={popularPosts} />
         </section>
 
         <section className="container category section" id="category">

@@ -1,5 +1,6 @@
 .card {
   width: 100%;
+  min-height: 375px;
   padding: 1em;
   border: 1px solid var(--black-4);
   border-radius: 5px;
@@ -15,7 +16,13 @@
 .card img {
   width: 100%;
   height: auto;
+  aspect-ratio: 3/2;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 0.75em;
+}
+
+.card h4 {
+  letter-spacing: -1px;
+  font-weight: bold;
 }

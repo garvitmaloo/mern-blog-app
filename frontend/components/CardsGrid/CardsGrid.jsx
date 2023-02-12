@@ -1,19 +1,14 @@
 import Link from "next/link";
 import Card from "../Cards/Card";
 import styles from "./CardsGrid.module.css";
-import { latestPosts } from "../../DUMMY_DATA/latest";
 
-export default function CardsGrid({ isAdmin }) {
-  // const postLink = isAdmin
-  //   ? `/admin/post/${post.postId}`
-  //   : `/post/${post.postId}`;
-
+export default function CardsGrid({ isAdmin, posts }) {
   return (
     <div className={styles.cardsContainer}>
-      {latestPosts.map((post) => (
+      {posts.map((post) => (
         <Link
-          key={post.postId}
-          href={isAdmin ? `/admin/post/${post.postId}` : `/post/${post.postId}`}
+          key={post._id}
+          href={isAdmin ? `/admin/post/${post._id}` : `/post/${post._id}`}
         >
           <Card post={post} />
         </Link>

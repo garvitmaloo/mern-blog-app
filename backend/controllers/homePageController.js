@@ -9,13 +9,13 @@ exports.homePageController = async function (req, res) {
   // Fetching all posts posted on or after first date of the current month
   const latestPosts = await Post.find({
     createdAt: { $gte: criteriaDate },
-  });
+  }).sort({ _id: -1 });
 
   // Fetching all posts marked as popular
   const popularPosts = await Post.find({ isPopular: true });
 
   res.status(200).json({
-    latestPosts,
-    popularPosts,
+    latestPosts: latestPosts.slice(0, 6),
+    popularPosts: popularPosts.slice(0, 6),
   });
 };

@@ -35,6 +35,12 @@ export default function NewPost() {
         },
       }
     );
+
+    titleInputRef.current.value = "";
+    briefInputRef.current.value = "";
+    readTimeInputRef.current.value = "";
+    detailsInputRef.current.value = "";
+    setSelectedFile(null);
   };
 
   const fileSelectHandler = (event) => {

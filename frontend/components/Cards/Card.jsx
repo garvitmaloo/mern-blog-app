@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Card({ post }) {
   return (
     <div className={styles.card}>
-      <img
+      <Image
         src={post.postImageURL}
         placeholder="empty"
         alt="Post Image"

@@ -3,6 +3,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
+import Image from "next/image";
 
 import styles from "../../styles/PostDetails.module.css";
 
@@ -20,7 +21,7 @@ export default function PostDetails(props) {
 
   return (
     <div className={`container py-4 px-0 ${styles.postContainer}`}>
-      <img src={data.postImageURL} alt="Banner" height={900} width={1600} />
+      <Image src={data.postImageURL} alt="Banner" height={900} width={1600} />
 
       <h1 className={styles.postTitle}>{data.postTitle}</h1>
 

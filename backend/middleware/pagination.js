@@ -12,15 +12,11 @@ exports.getPaginatedResults = function (model) {
       const allResults = await model.find().sort({ _id: -1 });
 
       if (startIndex > 0) {
-        paginatedResults.previousPage = {
-          page: page - 1,
-        };
+        paginatedResults.previousPage = page - 1;
       }
 
       if (endIndex < allResults.length) {
-        paginatedResults.nextPage = {
-          page: page + 1,
-        };
+        paginatedResults.nextPage = page + 1;
       }
 
       paginatedResults.currentPage = allResults.slice(startIndex, endIndex);

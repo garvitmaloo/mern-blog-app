@@ -1,0 +1,12 @@
+.paginationBtn {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 0.25em 1.25em;
+  background-color: var(--color-2);
+  cursor: pointer;
+  transition: var(--fast-transition);
+}
+
+.paginationBtn:hover {
+  border: 2px solid var(--black-1);
+}

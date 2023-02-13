@@ -9,7 +9,7 @@ exports.getPaginatedResults = function (model) {
     const paginatedResults = {};
 
     try {
-      const allResults = await model.find();
+      const allResults = await model.find().sort({ _id: -1 });
 
       if (startIndex > 0) {
         paginatedResults.previousPage = {

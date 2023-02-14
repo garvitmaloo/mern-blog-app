@@ -112,7 +112,7 @@ exports.deleteBlog = async function (req, res) {
   try {
     await Post.findByIdAndDelete(req.params.id);
 
-    res.status(410).json("Blog post deleted successfully");
+    res.status(204).json("Blog post deleted successfully");
   } catch (err) {
     res.status(404).json("Could not connect to the database at the moment");
   }

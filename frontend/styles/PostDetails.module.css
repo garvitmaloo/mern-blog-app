@@ -34,7 +34,7 @@
   justify-content: center;
 }
 
-.postActions a {
+.postActions button {
   display: block;
   padding: 0.75em 1.5em;
   border: 2px solid transparent;

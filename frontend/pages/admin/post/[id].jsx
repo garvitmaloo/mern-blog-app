@@ -11,6 +11,12 @@ export default function AdminPostDetails({ data }) {
 
   const postDetailsArray = data.postDetails.split("\r\n\r\n");
 
+  const editPostHandler = async () => {
+    router.push(
+      `http://localhost:3000/admin/post/new-post?edit=true&id=${data._id}`
+    );
+  };
+
   const deletePostHandler = async () => {
     const { statusText } = await axios.delete(
       `http://localhost:4000/api/admin/post/${data._id}`

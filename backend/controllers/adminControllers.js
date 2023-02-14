@@ -87,7 +87,8 @@ exports.postNewBlog = async function (req, res) {
 
 exports.editBlog = async function (req, res) {
   const { body, file } = req;
-  const { postTitle, postBrief, postDetails, postCategory, readTime } = body;
+  const { postTitle, postBrief, postDetails, postCategory, readTime } =
+    body.formData;
 
   try {
     const reqPost = await Post.findById(req.params.id);

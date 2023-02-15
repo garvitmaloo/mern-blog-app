@@ -2,6 +2,7 @@ const path = require("path");
 const stream = require("stream");
 const { google } = require("googleapis");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const Post = require("../model/Posts");
 const Admin = require("../model/Admin");
@@ -55,7 +56,20 @@ exports.postAdminLogin = async function (req, res) {
       return res.status(403).json("Incorrect password");
     }
 
-    res.status(200).json("Logged in as admin");
+    const accessToken = jwt.sign(
+      {
+        isAdmin: reqUser.isAdmin,
+        adminEmail: reqUser.email,
+        adminName: reqUser.adminName,
+      },
+      process.env.JWT_KEY
+    );
+
+    res.status(200).json({
+      accessToken,
+      isAdmin: reqUser.isAdmin,
+      message: "Logged in as admin",
+    });
   } catch (err) {
     return res.status(404).json("Could not authenticate at the moment");
   }

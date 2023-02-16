@@ -1,10 +1,26 @@
 import CardsGrid from "@project/components/CardsGrid/CardsGrid";
+import { AdminContext } from "@project/context/admin-auth";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import Router from "next/router";
 
 import Navbar from "../../components/Navbar/Navbar";
 import PaginationButtons from "../../components/PaginationButtons/PaginationButtons";
 
 export default function AdminHomePage({ data }) {
+  const adminCtx = useContext(AdminContext);
+  const isAdminAuth = adminCtx.admin.isAdmin;
+
+  useEffect(() => {
+    if (!isAdminAuth) {
+      Router.replace("http://localhost:3000/admin/login");
+    }
+  }, [isAdminAuth]);
+
+  if (!isAdminAuth) {
+    return null;
+  }
+
   return (
     <>
       <Navbar />

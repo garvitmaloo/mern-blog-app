@@ -1,11 +1,14 @@
 import EastIcon from "@mui/icons-material/East";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import axios from "axios";
+import { AdminContext } from "@project/context/admin-auth";
 
 import styles from "../../styles/Auth.module.css";
 import { useRouter } from "next/router";
 
 export default function Login() {
+  const adminCtx = useContext(AdminContext);
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -17,7 +20,7 @@ export default function Login() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    const { status } = await axios.post(
+    const { status, data } = await axios.post(
       "http://localhost:4000/api/admin",
       { email, password },
       {
@@ -28,6 +31,7 @@ export default function Login() {
     );
 
     if (status === 200) {
+      adminCtx.adminLogin(data);
       router.replace("http://localhost:3000/admin/home");
     }
   };

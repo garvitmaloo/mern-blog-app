@@ -45,7 +45,6 @@ exports.postAdminLogin = async function (req, res) {
 
   try {
     const reqUser = await Admin.findOne({ email });
-    const { isAdmin } = reqUser;
 
     if (!reqUser) {
       return res.status(404).json("Incorrect admin email");

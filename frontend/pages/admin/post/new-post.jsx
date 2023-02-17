@@ -1,11 +1,25 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AdminContext } from "@project/context/admin-auth";
 
 import styles from "../../../styles/NewPostForm.module.css";
 
 export default function NewPost() {
   const router = useRouter();
+
+  const adminCtx = useContext(AdminContext);
+  const isAdminAuth = adminCtx.admin.isAdmin;
+
+  useEffect(() => {
+    if (!isAdminAuth) {
+      router.replace("http://localhost:3000/admin/login");
+    }
+  }, [isAdminAuth]);
+
+  if (!isAdminAuth) {
+    return null;
+  }
 
   const titleInputRef = useRef();
   const briefInputRef = useRef();

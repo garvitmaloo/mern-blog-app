@@ -3,11 +3,26 @@ import Image from "next/image";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
+import { AdminContext } from "@project/context/admin-auth";
 
 import styles from "../../../styles/PostDetails.module.css";
 
 export default function AdminPostDetails({ data }) {
   const router = useRouter();
+
+  const adminCtx = useContext(AdminContext);
+  const isAdminAuth = adminCtx.admin.isAdmin;
+
+  useEffect(() => {
+    if (!isAdminAuth) {
+      router.replace("http://localhost:3000/admin/login");
+    }
+  }, [isAdminAuth]);
+
+  if (!isAdminAuth) {
+    return null;
+  }
 
   const postDetailsArray = data.postDetails.split("\r\n\r\n");
 

@@ -3,12 +3,20 @@ const stream = require("stream");
 const { google } = require("googleapis");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sendGridMail = require("@sendgrid/mail");
+const crypto = require("crypto");
+const dotenv = require("dotenv");
 
 const Post = require("../model/Posts");
 const Admin = require("../model/Admin");
+const Subscriber = require("../model/Subscriber");
+
+dotenv.config();
 
 const KEYFILEPATH = path.join(__dirname + "/../credentials.json");
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
+
+sendGridMail.setApiKey(process.env.SENDGRID_KEY);
 
 const auth = new google.auth.GoogleAuth({
   keyFile: KEYFILEPATH,
@@ -91,7 +99,22 @@ exports.postNewBlog = async function (req, res) {
       postImageURL: imageURL,
     });
 
-    await newPost.save();
+    const post = await newPost.save();
+
+    const subscribers = (await Subscriber.find()).map(
+      (subscriber) => subscriber.email
+    );
+    sendGridMail
+      .send({
+        to: subscribers,
+        from: process.env.FROM_EMAIL,
+        subject: "New Post Alert",
+        html: `
+        <p>Hello there</p>
+        <p>A new post has just been published. Check it out <a href='http://localhost:3000/post/${post._id.toString()}'> here </a> </p>
+      `,
+      })
+      .catch((err) => console.log(err));
 
     return res.status(201).json("New blog post created.");
   } catch (err) {
@@ -133,6 +156,64 @@ exports.deleteBlog = async function (req, res) {
   }
 };
 
-exports.postChangePassword = function (req, res) {
+exports.postChangePassword = async function (req, res) {
+  const { email } = req.body;
+
+  const admin = await Admin.findOne({ email });
+
+  if (!admin) {
+    return res
+      .status(404)
+      .json("Email entered does not match with the admin email");
+  }
+
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.log(err);
+    }
+
+    const token = buffer.toString("hex");
+    admin.passwordResetToken = token;
+    admin.resetTokenExpiration = Date.now() + 36000000;
+
+    const mail = {
+      to: admin.email,
+      from: process.env.FROM_EMAIL,
+      subject: "Email for password change ",
+      html: `
+        <p>You requested for password change. </p>
+        <p>Click on this <a href='http://localhost:3000/admin/reset-password?reset=${token}'> link </a> to reset password. </p>
+      `,
+    };
+
+    admin
+      .save()
+      .then((result) => sendGridMail.send(mail))
+      .catch((err) => console.log(err));
+  });
+
   res.status(200).json("Password change link sent to your email.");
+};
+
+exports.postResetPassword = async function (req, res) {
+  const admin = await Admin.findOne({ passwordResetToken: req.query.token });
+
+  if (!admin) {
+    return res.status(403).json("You are not allowed to change password");
+  }
+
+  // Check if the token is expired or not
+  if (admin.resetTokenExpiration < Date.now()) {
+    return res
+      .status(403)
+      .json("Token has expired. Retry setting new password");
+  }
+
+  const newHashedPassword = await bcrypt.hash(req.body.newPassword, 12);
+
+  admin.password = newHashedPassword;
+
+  await admin.save();
+
+  res.status(200).send("Password updated");
 };

@@ -31,4 +31,6 @@ router.delete("/post/:id", adminControllers.deleteBlog);
 
 router.post("/change-password", adminControllers.postChangePassword);
 
+router.post("/reset-password", adminControllers.postResetPassword);
+
 module.exports = router;
